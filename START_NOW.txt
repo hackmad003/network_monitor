@@ -1,0 +1,144 @@
+================================================================================
+  NETWORK MONITOR WEB DASHBOARD - START NOW!
+================================================================================
+
+YOUR SITUATION:
+- Python 3.14.2 (very new, some packages don't have wheels yet)
+- pyodbc and scapy won't install yet
+- You want to see the dashboard
+
+SOLUTION: Test version first, then fix dependencies later!
+
+================================================================================
+  OPTION 1: TEST VERSION (Works Right Now - Recommended!)
+================================================================================
+
+This shows you the web dashboard with sample/mock data.
+No database or network scanner needed!
+
+STEPS:
+------
+1. Open PowerShell or Command Prompt
+
+2. Install Flask:
+   pip install flask flask-cors
+
+3. Run the test server:
+   python test_web_only.py
+
+4. Open your browser:
+   http://localhost:5000
+
+5. Explore the dashboard!
+
+WHAT YOU'LL SEE:
+- Sample devices (computer, phone, TV)
+- Connection statistics
+- Events timeline
+- All the features working with mock data
+
+================================================================================
+  OPTION 2: FULL INSTALLATION (For Real Network Monitoring)
+================================================================================
+
+After you've seen the test version and want to use it for real:
+
+STEP 1: Install Npcap (for network scanning)
+------
+1. Download from: https://npcap.com/#download
+2. Run installer as Administrator
+3. CHECK the box: "Install Npcap in WinPcap API-compatible Mode"
+4. Finish installation
+5. RESTART YOUR COMPUTER
+
+STEP 2: Install Dependencies
+------
+After restart, run:
+   pip install flask flask-cors python-dotenv
+   pip install scapy
+   pip install pyodbc
+
+If pyodbc fails:
+- Download pre-built wheel from: https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyodbc
+- Or run: install_step_by_step.bat
+
+STEP 3: Setup Database
+------
+1. Copy config/env.example to .env
+2. Edit .env with your SQL Server details
+3. Run config/database_setup.sql in SQL Server
+
+STEP 4: Start Full Version
+------
+Right-click scripts\start_web_dashboard.bat → Run as administrator
+
+================================================================================
+  QUICK COMMANDS
+================================================================================
+
+Test Version (No dependencies):
+    pip install flask flask-cors
+    python test_web_only.py
+    Open: http://localhost:5000
+
+Full Installation:
+    1. Install Npcap (from npcap.com)
+    2. Restart computer
+    3. pip install flask flask-cors python-dotenv scapy pyodbc
+    4. Configure .env file
+    5. Right-click scripts\start_web_dashboard.bat → Run as administrator
+
+================================================================================
+  FILES TO HELP YOU
+================================================================================
+
+START_WEB_TEST.bat           - One-click test version
+test_web_only.py             - Test server with mock data
+install_step_by_step.bat     - Step-by-step dependency installer
+INSTALLATION_GUIDE_PYTHON_314.md - Complete troubleshooting guide
+
+================================================================================
+  TROUBLESHOOTING
+================================================================================
+
+Q: "pip is not recognized"
+A: Use: python -m pip install flask flask-cors
+
+Q: Flask installs but test won't start
+A: Make sure you're in the project folder, then: python test_web_only.py
+
+Q: Browser shows "can't connect"
+A: Make sure the test server is running (you should see messages in terminal)
+
+Q: pyodbc won't install
+A: That's OK! Use the test version first. Fix pyodbc later when you want the full version.
+   See: INSTALLATION_GUIDE_PYTHON_314.md for solutions
+
+Q: Want to use it on my phone?
+A: 1. Start the test server
+   2. Find your PC's IP (run: ipconfig)
+   3. On phone: http://YOUR-PC-IP:5000
+
+================================================================================
+  RECOMMENDED PATH
+================================================================================
+
+1. ✅ RIGHT NOW: Run test version (2 minutes)
+   - pip install flask flask-cors
+   - python test_web_only.py
+   - Open http://localhost:5000
+   - See what the dashboard looks like!
+
+2. ⏳ LATER: Install Npcap and restart
+
+3. ⏳ THEN: Install full dependencies
+
+4. ⏳ FINALLY: Run full version with real network monitoring
+
+================================================================================
+
+🚀 START WITH: python test_web_only.py
+
+This gets you up and running in 2 minutes!
+
+================================================================================

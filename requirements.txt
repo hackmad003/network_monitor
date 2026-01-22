@@ -1,3 +1,17 @@
+# Core Dependencies
 scapy==2.5.0
 pyodbc==5.0.1
 python-dotenv==1.0.0
+
+# Web Dashboard Dependencies
+flask==3.0.0
+flask-cors==4.0.0
+
+# Development Dependencies (install with: pip install -e ".[dev]")
+# pytest==7.4.3
+# pytest-cov==4.1.0
+# pytest-mock==3.12.0
+# black==23.12.1
+# flake8==6.1.0
+# mypy==1.7.1
+# pylint==3.0.3

@@ -1,5 +1,25 @@
 # Network Device Monitor
 
+> 🎯 **Professional-grade network monitoring solution** - Track device connections on your local network with SQL Server backend and Power BI reporting.
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+## ✨ New in v1.0.0
+
+- **🏗️ Modular Architecture**: Refactored into clean, testable modules
+- **📦 Proper Package Structure**: Installable Python package with `pip`
+- **🧪 Unit Tests**: Comprehensive test suite included
+- **📚 Complete Documentation**: Architecture, API reference, deployment guides
+- **🐳 Docker Support**: Ready for containerized deployment
+- **🔧 Professional Standards**: Type hints, logging, error handling
+- **🌐 Web Dashboard**: Modern web interface for real-time monitoring (NEW!)
+
+---
+
+# Network Device Monitor
+
 Monitor devices connecting to your home network and log them to SQL Server for Power BI dashboards.
 
 ## What This Does
@@ -8,6 +28,7 @@ Monitor devices connecting to your home network and log them to SQL Server for P
 - 📝 **Logs** every device connection and disconnection
 - 💾 **Stores** data in SQL Server database
 - 📊 **Ready** for Power BI dashboards
+- 🌐 **Web Dashboard** for real-time monitoring and visualization
 
 ---
 
@@ -111,11 +132,41 @@ SQL_WINDOWS_AUTH=yes
 # SQL_PASSWORD=your_password
 ```
 
-### Step 4: Run the Monitor
+### Step 4: Run the Application
 
 **IMPORTANT**: You need administrator privileges to scan the network.
 
-#### On Windows:
+You have two options:
+
+#### Option A: Web Dashboard (Recommended) 🌐
+
+The web dashboard provides a modern interface to monitor your network in real-time.
+
+**On Windows:**
+1. Right-click `scripts/start_web_dashboard.bat`
+2. Select "Run as administrator"
+3. Open your browser and go to: `http://localhost:5000`
+
+**On Linux/Mac:**
+```bash
+sudo ./scripts/start_web_dashboard.sh
+```
+
+**Features:**
+- Real-time device monitoring
+- Connection history and events
+- Manual scan trigger
+- Device details and statistics
+- Auto-refresh every 5 seconds
+
+📖 **For complete web dashboard documentation, see [WEB_DASHBOARD_GUIDE.md](WEB_DASHBOARD_GUIDE.md)**  
+🚀 **For quick start guide, see [QUICKSTART_WEB_DASHBOARD.md](QUICKSTART_WEB_DASHBOARD.md)**
+
+#### Option B: Command-Line Monitor
+
+For traditional command-line interface:
+
+**On Windows:**
 1. Close VS Code
 2. Right-click VS Code icon → "Run as administrator"
 3. Open your project folder again
@@ -124,6 +175,11 @@ SQL_WINDOWS_AUTH=yes
    ```bash
    python network_monitor.py
    ```
+
+**On Linux/Mac:**
+```bash
+sudo python network_monitor.py
+```
 
 You should see:
 ```
@@ -265,13 +321,33 @@ SCAN_INTERVAL=30  # Scan every 30 seconds
 
 ## Files in This Project
 
-- `network_monitor.py` - Main application
+### Main Files
+- `network_monitor.py` - Legacy command-line application
 - `requirements.txt` - Python packages needed
 - `.env.example` - Template configuration file
 - `.env` - Your actual configuration (you create this)
 - `database_setup.sql` - Database creation script
 - `network_monitor.log` - Application log file (created automatically)
 - `README.md` - This file!
+- `WEB_DASHBOARD_GUIDE.md` - Web dashboard documentation
+
+### Source Code (`src/network_monitor/`)
+- `main.py` - Command-line monitor entry point
+- `web.py` - Web dashboard Flask application
+- `web_main.py` - Web dashboard entry point
+- `monitor.py` - Network monitoring orchestration
+- `scanner.py` - Network scanning functionality
+- `database.py` - Database operations
+- `config.py` - Configuration management
+
+### Scripts
+- `scripts/start_monitor.bat/sh` - Start command-line monitor
+- `scripts/start_web_dashboard.bat/sh` - Start web dashboard
+
+### Web Dashboard Files
+- `templates/index.html` - Dashboard HTML
+- `static/css/style.css` - Dashboard styles
+- `static/js/main.js` - Dashboard JavaScript
 
 ---
 
@@ -279,13 +355,37 @@ SCAN_INTERVAL=30  # Scan every 30 seconds
 
 Common issues and solutions are in the Troubleshooting section above.
 
+## Web Dashboard
+
+The web dashboard provides a modern, user-friendly interface for monitoring your network:
+
+- **Real-time monitoring** with auto-refresh every 5 seconds
+- **Device management** with search and filtering
+- **Connection history** and event tracking
+- **Statistics dashboard** with 24-hour activity
+- **Manual scan trigger** for immediate updates
+- **REST API** for custom integrations
+
+📖 **See [WEB_DASHBOARD_GUIDE.md](WEB_DASHBOARD_GUIDE.md) for complete documentation**
+
+Quick Start:
+```bash
+# Windows (as Administrator)
+scripts\start_web_dashboard.bat
+
+# Linux/Mac (with sudo)
+sudo ./scripts/start_web_dashboard.sh
+
+# Then open: http://localhost:5000
+```
+
 ## Next Steps
 
-1. Let the monitor run for a few days to collect data
-2. Create Power BI dashboards to visualize:
-   - Peak usage times
-   - Most connected devices
-   - Connection patterns
-3. Set up automatic refresh in Power BI (File → Options → Data Load)
+- **🌐 Use the Web Dashboard**: Monitor your network in real-time with the modern web interface
+- **Customize device names**: Edit `DeviceName` field in `DeviceConnections` table
+- **Set up Power BI**: Connect to your database for visualizations
+- **Schedule reports**: Use Power BI scheduled refresh
+- **Add more devices**: They'll be detected automatically
+- **Access remotely**: Configure firewall to access the web dashboard from other devices
 
 Enjoy monitoring your network! 🎉
